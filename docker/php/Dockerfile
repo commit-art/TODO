@@ -17,6 +17,11 @@ RUN set -eux; \
             libonig-dev; \
     rm -rf /var/lib/apt/lists/*
 
+#RUN mkdir -p /var/log && chmod 777 /var/log
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
 RUN docker-php-ext-install pdo_mysql mbstring pcntl
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
