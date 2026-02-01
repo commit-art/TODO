@@ -75,3 +75,27 @@ Also task can have subtasks, level of subtask is not limited
 ```sh
 sudo docker exec php-fpm_todo_list php artisan test
 ```
+
+## Set up x-debug with docker
+
+1. Add current user to the docker group
+    ```sh
+    sudo usermod -aG docker $USER
+    getent group docker
+    ```
+2. Add rule to UFW
+    ```sh
+    sudo ufw allow 9003/tcp
+    ```
+
+3. Settings -> PHP Set correct mappings
+    ```sh
+    "/var/www/TodoListApi; /var/www"
+    ```
+
+4. Settings-> PHP -> Servers
+    ```sh
+    "localhost:80"
+    ```
+
+5. See diagnostic Log in xdebug_info()
